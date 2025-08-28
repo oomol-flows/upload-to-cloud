@@ -1,0 +1,21 @@
+title: "Upload File to Cloud"
+description: Pass the file to the cloud and get an online address. Valid time 24
+  hours for temporary upload
+icon: ":carbon:cloud-upload:"
+
+inputs_def:
+  - handle: file
+    json_schema:
+      type: string
+      ui:widget: file
+
+outputs_def:
+  - handle: cache_url
+    json_schema:
+      type: string
+      title: Presigned URL
+
+executor:
+  name: nodejs
+  options:
+    entry: index.ts

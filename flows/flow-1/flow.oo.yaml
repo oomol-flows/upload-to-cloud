@@ -1,0 +1,7 @@
+nodes:
+  - node_id: upload-remote-cache#2
+    title: "Upload File to Remote Cache"
+    inputs_from:
+      - handle: file
+        value: /oomol-driver/oomol-storage/college_student_placement_dataset.csv
+    task: self::upload-to-cloud
