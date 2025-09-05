@@ -1,4 +1,4 @@
-version: 0.0.1
+version: 0.0.2
 scripts:
   # Script executed when the container is first loaded
   # eg: bootstrap: poetry add pandas
@@ -10,5 +10,5 @@ name: upload-to-cloud
 icon: ./icon.png
 description: Pass the file to the cloud and get an online address. Valid time 24
   hours for temporary upload
-releaseNotes: Upload to Cloud
 repository: https://github.com/oomol-flows/upload-to-cloud.git
+releaseNotes: support large file

@@ -10,7 +10,7 @@ inputs_def:
       ui:widget: file
 
 outputs_def:
-  - handle: cache_url
+  - handle: remote_url
     json_schema:
       type: string
       title: Presigned URL
