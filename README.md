@@ -1,125 +1,110 @@
-# Upload to Cloud
+# Upload to Cloud - File Sharing Made Simple
 
-A OOMOL workflow block for uploading files to cloud storage with temporary access URLs.
+## What is this project?
 
-## Overview
+Upload to Cloud is a user-friendly workflow tool that helps you quickly upload files to the internet and get shareable links. Think of it as a simple way to share files without needing technical knowledge - just like using a cloud storage service, but integrated into automated workflows.
 
-This project provides a secure and efficient solution for uploading files to cloud storage and generating temporary access URLs. The uploaded files are stored in a remote cache with a 24-hour validity period, making it perfect for temporary file sharing and processing workflows.
+## 🎯 Who is this for?
 
-## Features
+- **Content creators** who need to share large files with clients or collaborators
+- **Business professionals** who want to automate file sharing processes
+- **Anyone** who needs temporary file hosting without complex setup
+- **Teams** building automated workflows that involve file sharing
 
-- **Multipart Upload**: Supports large file uploads with chunked upload mechanism
-- **Progress Tracking**: Real-time upload progress reporting
-- **Retry Logic**: Automatic retry mechanism for failed uploads with exponential backoff
-- **Temporary URLs**: Generates presigned URLs with 24-hour expiration
-- **Error Handling**: Comprehensive error handling and logging
-- **OOMOL Integration**: Seamless integration with OOMOL platform workflows
+## 📦 Available Blocks (Tools)
 
-## Project Structure
+### Upload File to Cloud Block
 
-```
-upload-to-cloud/
-├── flows/                          # Workflow definitions
-│   └── flow-1/
-│       ├── flow.oo.yaml           # Main workflow configuration
-│       └── .flow.ui.oo.json       # UI configuration
-├── tasks/                          # Reusable task blocks
-│   └── upload-to-cloud/
-│       ├── index.ts               # Main upload implementation
-│       └── task.oo.yaml           # Task configuration
-├── package.oo.yaml                # OOMOL package configuration
-├── package.json                   # Node.js dependencies
-└── README.md                      # This file
-```
+**What it does:** Takes any file from your computer and uploads it to the internet, giving you a web link that anyone can use to download the file.
 
-## Block Description
+**Key Features:**
+-  Upload files of any size (supports large files)
+-  Get an instant shareable web link
+-  Files stay online for 24 hours (perfect for temporary sharing)
+-  No technical setup required
+-  Works with any file type (documents, images, videos, etc.)
 
-### Upload to Cloud Block
+**Perfect for:**
+- Sharing project files with clients
+- Temporary file distribution
+- Quick file backups
+- Collaborative work where files need to be accessible online
 
-**Location**: `tasks/upload-to-cloud/`
+## 🚀 How to Use
 
-This block handles the complete file upload process to cloud storage.
+### Simple Usage
+1. **Select your file** - Choose any file from your computer
+2. **Run the workflow** - The system automatically uploads your file
+3. **Get your link** - Receive a web address that anyone can use to download your file
+4. **Share away** - Send the link via email, chat, or any communication method
 
-#### Inputs
-- `file` (string): File path of the file to be uploaded
-  - Accepts any file type
-  - Uses file picker UI widget for easy selection
+### Example Scenarios
 
-#### Outputs  
-- `remote_url` (string): Presigned URL for accessing the uploaded file
-  - Valid for 24 hours from upload time
-  - Can be used for direct file access or sharing
+**Scenario 1: Freelancer sharing work**
+- You've finished a design project and need to send it to your client
+- Instead of email attachments (which have size limits), use this tool
+- Get a clean, professional download link to share
 
-#### Functionality
-1. **File Validation**: Checks if the specified file exists and is accessible
-2. **Upload Initialization**: Contacts the remote server to initialize a multipart upload session
-3. **Chunked Upload**: Splits large files into smaller chunks for parallel upload
-4. **Progress Reporting**: Provides real-time progress updates during upload
-5. **URL Generation**: Retrieves the final presigned URL for the uploaded file
+**Scenario 2: Team collaboration**
+- Your team needs access to a large presentation file
+- Upload it once, share the link with everyone
+- No need for everyone to have the same cloud storage service
 
-#### Technical Details
-- **Executor**: Node.js/TypeScript
-- **API Endpoint**: `https://console.oomol.com/api/tasks/files/remote-cache/`
-- **Authentication**: Requires OOMOL API key from environment
-- **Upload Strategy**: Parallel multipart upload with automatic retry
-- **File Size**: Supports files of any size through chunked upload
-- **Timeout**: Includes retry logic with progressive backoff
+**Scenario 3: Temporary file distribution**
+- You have a file that multiple people need, but only for a short time
+- Perfect for event materials, temporary resources, or one-time shares
 
-## Usage
+## 🔄 Integration with Workflows
 
-### In OOMOL Workflows
+This tool is designed to work seamlessly with other workflow blocks. You can:
+- **Chain it with other processes** - Upload files as part of larger automated workflows
+- **Use it as a step** - Make file uploading one part of a multi-step process
+- **Combine with notifications** - Automatically send the download link to recipients
+- **Schedule uploads** - Set up automated file sharing at specific times
 
-1. **Add the Block**: Drag the "Upload to Cloud" block into your workflow
-2. **Configure Input**: Connect a file path or use the file picker
-3. **Connect Output**: Use the `remote_url` output in subsequent blocks
-4. **Run Workflow**: Execute to upload your file and get the temporary URL
+## ⚡ Technical Benefits (Simplified)
 
-### Example Workflow
+- **Fast uploads** - Optimized for quick file processing
+- **Reliable** - Built-in error handling ensures your files get uploaded
+- **Secure** - Files are handled safely during the upload process
+- **Temporary** - Automatic cleanup after 24 hours protects privacy
+- **No storage limits** - Handle large files that won't fit in email
 
-```yaml
-nodes:
-  - node_id: upload-remote-cache#1
-    title: "Upload File to Remote Cache"
-    inputs_from:
-      - handle: file
-        value: /path/to/your/file.pdf
-    task: self::upload-to-cloud
-```
+## 🎯 Use Cases
 
-The output `remote_url` can then be used by other blocks for:
-- File sharing and distribution
-- Processing by cloud-based services  
-- Integration with external APIs
-- Temporary file hosting
+### Business
+- Share contracts and documents with clients
+- Distribute training materials to employees
+- Send product catalogs to prospects
+- Share meeting recordings with attendees
 
-## Prerequisites
+### Creative Work
+- Send design files to clients for review
+- Share high-resolution images with print shops
+- Distribute video files to collaborators
+- Send portfolio pieces to potential clients
 
-- OOMOL platform environment
-- Valid OOMOL API key configured in environment variables
-- Node.js runtime for TypeScript execution
+### Personal
+- Share family photos and videos
+- Send large files to friends
+- Temporary backup of important documents
+- Share files across different devices
 
-## Installation
+## 🔒 Important Notes
 
-The block is automatically configured when you install this OOMOL package. Dependencies are managed through the package configuration and installed during the bootstrap process.
+- **24-hour expiration**: Files are automatically deleted after 24 hours for security and privacy
+- **Public links**: Anyone with the link can download the file, so only share with trusted recipients
+- **One-time upload**: Each use creates a fresh upload and new link
+- **No permanent storage**: This is designed for temporary sharing, not long-term storage
 
-## Error Handling
+## 🆘 Getting Help
 
-The block includes comprehensive error handling for:
-- Missing or invalid file paths
-- Network connectivity issues  
-- Authentication failures
-- Server-side upload errors
-- Large file upload timeouts
+If you need assistance with this tool:
+1. Check that your file isn't corrupted or locked
+2. Ensure you have a stable internet connection
+3. Try uploading a smaller test file first
+4. Contact your workflow administrator if issues persist
 
-All errors are properly logged and reported through the OOMOL context system.
+---
 
-## Security
-
-- All uploads require valid authentication
-- Presigned URLs have limited 24-hour lifespan
-- Files are stored securely in remote cache
-- No sensitive data is logged or exposed
-
-## Support
-
-For issues and feature requests, please visit the [project repository](https://github.com/oomol-flows/upload-to-cloud.git).
+*This project is part of the OOMOL workflow platform, designed to make file sharing simple and efficient for everyone, regardless of technical background.*

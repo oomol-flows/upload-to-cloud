@@ -1,14 +1,13 @@
-version: 0.0.2
+version: 0.0.3
 scripts:
   # Script executed when the container is first loaded
   # eg: bootstrap: poetry add pandas
   bootstrap: |
     npm install
     poetry install --no-root
-displayName: Upload to Cloud
+displayName: "%upload-to-cloud%"
 name: upload-to-cloud
 icon: ./icon.png
-description: Pass the file to the cloud and get an online address. Valid time 24
-  hours for temporary upload
+description: "%key%"
 repository: https://github.com/oomol-flows/upload-to-cloud.git
 releaseNotes: support large file
